@@ -1,0 +1,125 @@
+@import url(common/reset.css);
+@import url(common.css);
+.event .event .section1 {
+    background-color: #f3f2ee;
+    margin-top: 70px;
+}
+.event .event .section2 {
+    background-color: #0c0c0c;
+}
+.event .event .section2 .sec_wrap {
+    transform: translateY(-5%);
+}
+.event .event .swiper-wrapper {
+    display: flex;
+    height: 100px;
+    flex-wrap: nowrap;
+}
+.event .event_tab {
+    width: calc(25% - 9px) !important;
+    flex-shrink: 0;
+    padding: 20px 0;
+    /* margin-right: 12px; */
+}
+.event .event_tab:nth-child(4) {
+    margin: 0;
+}
+/* .event .tab_wrap {
+    width: 100%;
+}
+.event .swiper-wrapper{
+    display: flex;
+    height: 100px;
+    flex-wrap: nowrap;
+}
+.event_tab {
+    width: calc(25% - 9px) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #f3f2ee;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    margin-right: 12px;
+}
+.event_tab.tab_active {
+    background-color: #f3f2ee;
+}
+.event_tab:nth-child(1).tab_active > h4 {
+    color: #ee4b3c;
+}
+.event_tab:nth-child(2).tab_active > h4 {
+    color: #f9b6b0;
+}
+.event_tab:nth-child(3).tab_active > h4 {
+    color: #1874c1;
+}
+.event_tab:nth-child(4).tab_active > h4 {
+    color: #ffbc16;
+}
+.event_tab:nth-child(5).tab_active > h4 {
+    color: #1ea849;
+}
+.event_tab:nth-child(6).tab_active > h4 {
+    color: #ee4b3c;
+}
+.event_tab:nth-child(7).tab_active > h4 {
+    color: #f9b6b0;
+}
+.event_tab> h4 {
+    text-align: center;
+    font-weight: 900;
+    color: #f3f2ee;
+}
+.event_tab:nth-child(4){
+    margin:0;
+} */
+.event .tab_content_wrap.tab_active {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.event .tap_event_content {
+    display: none;
+}
+.event .tap_event_content > div {
+    width: calc(25% - 9px);
+    height: auto;
+}
+.event .tap_event_content > div > .img {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    background-color: #f3f2ee;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center center;
+    overflow: hidden;
+}
+.event .tap_event_content > div > .img >img{
+    position: absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+}
+@media (max-width: 800px) {
+    .event .event_wrap {
+        gap: 10px;
+    }
+    .event .event_tab:nth-child(2n-1) {
+        margin-right: 10px;
+    }
+    .event .event .tab_wrap {
+        height: 50px;
+    }
+    .event .event_tab {
+        width: calc(50% - 6px) !important;
+        margin: 0;
+    }
+    .event .tap_event_content > div {
+        width: calc(50% - 6px);
+        height: auto;
+    }
+}
