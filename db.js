@@ -8,7 +8,7 @@ var connection = mysql.createConnection({
 });
 function writeNotice_event(title, writer, category, password, content, callback) {
     connection.query(
-        `INSERT INTO notice_event(create_time, title, writer, category, password, content) values (NOW(),'${title}','${writer}','${category}',${password},'${content}')`,
+        `INSERT INTO notice_event(create_time, title, writer, category, password, content) values (NOW(),'${title}','${writer}','${category}','${password}','${content}')`,
         (err) => {
             if (err) throw err;
             callback();
@@ -17,7 +17,7 @@ function writeNotice_event(title, writer, category, password, content, callback)
 }
 function writeNotice(title, writer, category, password, content, callback) {
     connection.query(
-        `INSERT INTO notice(create_time, title, writer, category, password, content) values (NOW(),'${title}','${writer}','${category}',${password},'${content}')`,
+        `INSERT INTO notice(create_time, title, writer, category, password, content) values (NOW(),'${title}','${writer}','${category}','${password}','${content}')`,
         (err) => {
             if (err) throw err;
             callback();
