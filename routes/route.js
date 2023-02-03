@@ -6,9 +6,25 @@ const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
 const db = require("./../db.js");
+const upload = multer({
+    storage: multer.diskStorage({
+        destination(req, file, done) {
+            done(null, "public/uploads/");
+        },
+        filename(req, file, done) {
+            const ext = path.extname(file.originalname); //파일의 확장자
+            done(null, path.basename(file.originalname, ext) + Date.now() + ext); //파일명 + 날짜 + 확장자명
+        },
+    }),
+    limits: {
+        fileSize: 1024 * 1024 * 9,
+    }, //2메가까지 업로드 가능
+});
 //notice=====================================
 router.get("/", (req, res) => {
-    res.render("main");
+    db.getNotice((rows1) => {
+        res.render("main", { rows1: rows1 });
+    });
 });
 // router.get("/notice_list", (req, res) => {
 //     db.getNotice((rows) => {
@@ -17,7 +33,10 @@ router.get("/", (req, res) => {
 // });
 router.get("/notice_list", (req, res) => {
     db.getNotice((rows1, rows2) => {
-        res.render("notice_list", { rows1: rows1, rows2: rows2 }); //ejs의 rows를 받아서 rows라는 이름으로 보낸다
+        res.render("notice_list", {
+            rows1: rows1,
+            rows2: rows2,
+        }); //ejs의 rows를 받아서 rows라는 이름으로 보낸다
     });
 });
 router.get("/notice_write", (req, res) => {
@@ -26,22 +45,26 @@ router.get("/notice_write", (req, res) => {
 router.post("/w_notice", (req, res) => {
     let param = JSON.parse(JSON.stringify(req.body));
     let title = param["title"];
-    let writer = param["name"];
+    let writer = param["writer"];
     let category = param["category"];
+    let categorycolor = param["category_color"];
     let password = param["password"];
     let content = param["content"];
 
-    db.writeNotice(title, writer, category, password, content, () => {
+    db.writeNotice(title, writer, category, categorycolor, password, content, () => {
         res.redirect("/notice_list");
     });
 });
 router.get("/notice_detail", (req, res) => {
     let id = req.query.id;
+    // let id = req.query.id;
     db.getNoticeByid(id, (row) => {
-        res.render("notice_content", { row: row[0] }); //테이블의 한 행만 보내줄거기 때문에
+        res.render("notice_content", {
+            row: row[0],
+        }); //테이블의 한 행만 보내줄거기 때문에
     });
 });
-//notice====2222222=====================================
+//notice===NEWS 섹션====================================
 
 router.get("/notice_write_event", (req, res) => {
     res.render("notice_write_event");
@@ -49,13 +72,37 @@ router.get("/notice_write_event", (req, res) => {
 router.post("/w_notice_event", (req, res) => {
     let param = JSON.parse(JSON.stringify(req.body));
     let title = param["title"];
-    let writer = param["name"];
+    let writer = param["writer"];
     let category = param["category"];
+    let categorycolor = param["category_color"];
     let password = param["password"];
     let content = param["content"];
+    let img = param["img"];
 
-    db.writeNotice_event(title, writer, category, password, content, () => {
-        res.redirect("/notice_write_event");
+    db.writeNotice_event(title, writer, category, categorycolor, password, content, img, () => {
+        res.redirect("/notice_list");
+    });
+});
+
+//modify
+
+router.get("/modifyNotice", (req, res) => {
+    let id = req.query.id;
+    db.modify_N(id, (row) => {
+        res.render("notice_modify", { row: row[0] });
+    });
+});
+router.post("/m_notice", (req, res) => {
+    let param = JSON.parse(JSON.stringify(req.body));
+    let id = param["id"];
+    let title = param["title"];
+    let writer = param["writer"];
+    let category = param["category"];
+    let categorycolor = param["category_color"];
+    let password = param["password"];
+    let content = param["content"];
+    db.updateNotice(id, title, writer, category, categorycolor, password, content, () => {
+        res.redirect("/notice_list"); //redirect 에는 / 붙인다
     });
 });
 //==============================================
@@ -65,10 +112,129 @@ router.get("/committee", (req, res) => {
 router.get("/festival", (req, res) => {
     res.render("festival");
 });
-router.get("/event", (req, res) => {
-    res.render("event");
+router.get("/port_festival", (req, res) => {
+    res.render("festival_port");
+});
+router.get("/sea_festival", (req, res) => {
+    res.render("festival_sea");
+});
+router.get("/road_festival", (req, res) => {
+    res.render("festival_road");
+});
+router.get("/fireworks", (req, res) => {
+    res.render("festival_fire");
+});
+router.get("/rock_festival", (req, res) => {
+    res.render("festival_rock");
+});
+router.get("/flower_festival", (req, res) => {
+    res.render("festival_flower");
 });
 
+
+router.post("/insert_reserve", (req, res) => {
+    let param = JSON.parse(JSON.stringify(req.body));
+    let festival = param["festival"];
+    let date = param["date"];
+    let time = param["time"];
+    let name = param["name"];
+    let phone = param["phone"];
+    db.insertReservation(festival, date, time, name, phone, () => {
+        res.redirect("/reservation");
+    });
+});
+router.get("/reservation", (req, res) => {
+    let id = req.query.id;
+    db.getReserveById(id, (row) => {
+        res.render("reservation", {
+            row: row[0],
+        }); //테이블의 한 행만 보내줄거기 때문에
+    });
+});
+//---이벤트 페이지---
+router.get("/event", (req, res) => {
+    db.getEvent((havors, flowers, fires, rocks, seas, citys, rings) => {
+        res.render("event", {
+            havors: havors,
+            flowers: flowers,
+            fires: fires,
+            rocks: rocks,
+            seas: seas,
+            citys: citys,
+            rings: rings,
+        });
+    });
+});
+// 이벤트 등록 페이지
+
+router.get("/eventwrite", (req, res) => {
+    res.render("event_write");
+});
+router.post("/w_event", upload.single("eventimg"), (req, res) => {
+    let param = JSON.parse(JSON.stringify(req.body));
+    let writer = param["name"];
+    let pw = param["password"];
+    let category = param["category"];
+    let title = param["title"];
+    let content = param["content"];
+    let eventimg = "uploads/" + req.file.filename;
+    db.insertIntoEvent(writer, pw, category, title, content, eventimg, () => {
+        res.redirect("/event");
+    });
+});
+//이벤트 세부 페이지
+router.get("/event_content", (req, res) => {
+    let id = req.query.id;
+    db.getEventById(id, (row) => {
+        res.render("event_content", { row: row[0] });
+    });
+});
+// 이벤트 세부 삭제 버튼
+router.get("/delete_event", (req, res) => {
+    let id = req.query.id;
+    db.deleteEvent(id, () => {
+        res.redirect("/event");
+    });
+});
+//이벤트 수정 페이지
+router.get("/modify_event", (req, res) => {
+    let id = req.query.id;
+    db.modify_E(id, (row) => {
+        res.render("event_modify", { row: row[0] });
+    });
+});
+//이벤트 수정 포스트
+router.post("/modify_e", upload.single("eventimg"), (req, res) => {
+    let param = JSON.parse(JSON.stringify(req.body));
+    let id = param["id"];
+    let writer = param["name"];
+    let pw = param["password"];
+    let category = param["category"];
+    let title = param["title"];
+    let content = param["content"];
+    let eventimg = "uploads/" + req.file.filename;
+    db.updateEvent(id, writer, pw, category, title, content, eventimg, () => {
+        res.redirect("/event");
+    });
+});
+router.post("/event_comment_write", (req, res) => {
+    let param = JSON.parse(JSON.stringify(req.body));
+    let id = param["id"];
+    let password = param["password"];
+    let content = param["content"];
+
+    db.writeComment(id, password, content, () => {
+        res.redirect("/luckybox");
+    });
+});
+router.get("/luckybox", (req, res) => {
+    db.getComment((rows) => {
+        res.render("luckybox", {
+            rows: rows,
+        }); //ejs의 rows를 받아서 rows라는 이름으로 보낸다
+    });
+});
+//---갤러리---
 router.get("/gallery", (req, res) => {
     res.render("gallery");
 });
@@ -89,7 +255,9 @@ router.post("/loginCheck", (req, res) => {
 });
 router.get("/join", (req, res) => {
     db.getJointable((ids) => {
-        res.render("join", { ids: ids });
+        res.render("join", {
+            ids: ids,
+        });
     });
 });
 router.post("/joininfo", (req, res) => {
@@ -103,16 +271,72 @@ router.post("/joininfo", (req, res) => {
         res.redirect("/login");
     });
 });
+
 router.get("/test", (req, res) => {
     res.render("test");
 });
 
+//어트랙션 페이지
 
+//어트랙션 불러오기
+router.get("/attraction", (req, res) => {
+    db.getAttr((rows)=> {
+        res.render("attraction",{rows:rows});
+    })
+});
 
+router.get("/attr_content", (req, res) => {
+    let id = req.query.id;
+    db.getAttrbyId(id, (row)=> {
+        res.render("attr_content",{row : row[0]});
+    })
+});
 
-//뉴스페이지 작업 중
-router.get("/news", (req, res) => {
-    res.render("news_view");
+//어트랙션 작성
+router.get("/attr_write", (req, res) => {
+    res.render("attr_write");
+});
+router.post("/w_attr", upload.single("attrimg"), (req, res) => {
+    let param = JSON.parse(JSON.stringify(req.body));
+    let title = param["title"];
+    let hashtag = param["hashtag"];
+    let pw = param["password"];
+    let category = param["category"];
+    let content = param["content"];
+    let attrimg = "uploads/" + req.file.filename;
+    db.insertattr(hashtag, pw, category, title, content, attrimg, () => {
+        res.redirect("/attraction");
+    });
+});
+//어트랙션 수정
+router.get("/modify_attr", (req, res) => {
+    let id = req.query.id;
+    db.modify_attr(id, (row) => {
+        res.render("attr_modify", { row: row[0] });
+    });
+});
+//어트랙션 수정 포스트
+router.post("/attr_edit", upload.single("attrimg"), (req, res) => {
+    let param = JSON.parse(JSON.stringify(req.body));
+    let id = param["id"];
+    let title = param["title"];
+    let hashtag = param["hashtag"];
+    let pw = param["password"];
+    let category = param["category"];
+    let content = param["content"];
+    let attrimg = "uploads/" + req.file.filename;
+    console.log(hashtag);
+    console.log(id);
+    db.updateAttr(id, hashtag, pw, category, title, content, attrimg, () => {
+        res.redirect("/attraction");
+    });
+});
+//어트랙션 삭제
+router.get("/delete_attr", (req, res) => {
+    let id = req.query.id;
+    db.deleteAttr(id, () => {
+        res.redirect("/attraction");
+    });
 });
 
 module.exports = router;

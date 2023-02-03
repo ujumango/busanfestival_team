@@ -1,11 +1,21 @@
 <main class="login">
     <!-- 섹션1 로그인 섹션시작 -->
     <section class="sec1">
+        <div class="mobile_btn_wrap">
+            <div class="home_btn" onclick="location.href ='/'">
+                <img src="img/home.png" alt="">
+            </div>
+            <div class="back_btn" onclick="goback();">
+                <img src="img/turn-back.png" alt="">
+            </div>
+        </div>
         <div class="login_sec1_wrap sec_wrap">
             <!-- 로그인 섹션 왼쪽 로고 및 이미지 -->
             <div class="left_logo_wrap">
                 <div class="logo">
-                    <a href=""><div class="img"></div></a>
+                    <a href="/">
+                        <div class="img"></div>
+                    </a>
                 </div>
                 <div class="logo_under_img">
                     <div class="log_left">
@@ -52,8 +62,6 @@
                 </div>
             </form>
         </div>
-        <div class="wave">
-            <div class="wave_bg wbg_top"></div>
-        </div>
     </section>
 </main>
+<script src="js/login.js"></script>

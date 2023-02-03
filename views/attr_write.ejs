@@ -1,0 +1,121 @@
+<main class="community notice_write">
+    <section class="section1">
+        <div class="sec_wrap">
+          <div class="subpage_title_wrap">
+              <h2>LET'S MOVE</h2>
+              <div class="subpage_title">
+                  <div>
+                      <h2>A</h2>
+                  </div>
+                  <div>
+                      <h2>T</h2>
+                  </div>
+                  <div>
+                      <h2>T</h2>
+                  </div>
+                  <div>
+                      <h2>R</h2>
+                  </div>
+                  <div>
+                      <h2>A</h2>
+                  </div>
+                  <div>
+                      <h2>C</h2>
+                  </div>
+                  <div>
+                      <h2>T</h2>
+                  </div>
+                  <div>
+                      <h2>I</h2>
+                  </div>
+                  <div>
+                      <h2>O</h2>
+                  </div>
+                  <div>
+                      <h2>N</h2>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="wave">
+          <div class="wave_bg wbg_top"></div>
+      </div>
+      
+      </section>
+    <section class="section2">
+        <form action="/w_attr" method="post" enctype="multipart/form-data">
+            <div class="sec_wrap">
+                <div class="notice_write_cont">
+                    <div class="notice_write_cate wh_bg"><h4>어트랙션 작성</h4></div>
+                    <div class="notice_write_cont">
+                        <div class="notice_write_cate wh_bg_line"><h4>*는 필수 입력입니다.</h4></div>
+
+
+
+                            <div class="notice_write_cont">
+                                <div class="notice_write_cate wh_bg_line">
+                                    <p class="notice_write_title">카테고리</p>
+                                    <div>
+                                        <select name="category">
+                                            <option value="">--Please choose an option--</option>
+                                            <option value="자연/사찰">자연/사찰</option>
+                                            <option value="전시/관람">전시/관람</option>
+                                            <option value="해수욕장/항구">해수욕장/항구</option>
+                                            <option value="공원/시설">공원/시설</option>
+                                         
+                                         
+                                        </select>
+                                     
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notice_write_cont">
+                                <div class="notice_write_cate wh_bg_line">
+                                    <p class="notice_write_title">비밀번호</p>
+                                    <div><input type="password" name="password" id="pw" class="notice_write_input" /></div>
+                                </div>
+                            </div>
+                            <div class="notice_write_cont">
+                           <div class="notice_write_cate wh_bg_line">
+                                    <p class="notice_write_title">제목</p>
+                                    <div><input type="text" name="title" id="title" class="notice_write_input2" /></div>
+                            </div>
+         
+                            </div>
+                            <div class="notice_write_cont">
+                                <div class="notice_write_cate wh_bg_line">
+                                         <p class="notice_write_title">해시태그</p>
+                                         <div><input type="text" name="hashtag" id="hashtag" class="notice_write_input2" /></div>
+                                 </div>
+              
+                                 </div>
+                            <div class="notice_write_cont">
+                                <div class="notice_write_cate wh_bg_line">
+                                    <p class="notice_write_title">내용</p>
+                                    <div class="noti_textarea"><textarea name="content" rows="10" cols="100"></textarea></div>
+                                </div>
+                            </div>
+                            <div class="notice_write_cont">
+                                <div class="notice_write_cate wh_bg_line">
+                                    <p class="notice_write_title">첨부파일</p>
+                                    <div class="noti_file"><input type="file" name="attrimg" id="title" class="notice_write_input2" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notice_btn_wrap">
+                        <div class="notice_btn">
+                            <input type="button" value="취소" class="list_btn" onclick="location.href='/attraction'" />
+                        </div>
+                        <div class="notice_btn">
+                            <input type="submit" value="확인" id="submit">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="wave">
+            <div class="wave_bg wbg_bot"></div>
+        </div>
+    </section>
+</main>

@@ -1,0 +1,89 @@
+<main class="attraction attr_list">
+<section class="section1">
+  <div class="sec_wrap">
+    <div class="subpage_title_wrap">
+        <h2>LET'S MOVE</h2>
+        <div class="subpage_title">
+            <div>
+                <h2>A</h2>
+            </div>
+            <div>
+                <h2>T</h2>
+            </div>
+            <div>
+                <h2>T</h2>
+            </div>
+            <div>
+                <h2>R</h2>
+            </div>
+            <div>
+                <h2>A</h2>
+            </div>
+            <div>
+                <h2>C</h2>
+            </div>
+            <div>
+                <h2>T</h2>
+            </div>
+            <div>
+                <h2>I</h2>
+            </div>
+            <div>
+                <h2>O</h2>
+            </div>
+            <div>
+                <h2>N</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wave">
+    <div class="wave_bg wbg_top"></div>
+</div>
+
+</section>
+<section class="section2">
+    <div class="sec_wrap attr_wrap">
+        <div class="attr_menu">
+            <ul><li id="attr_total" class="attr_li"><h2>전체</h2></li>
+                <li id="attr_nature" class="attr_li"><h2>자연/사찰</h2></li>
+                <li id="attr_exhibi" class="attr_li"><h2>전시/관람</h2></li>
+                <li id="attr_beach" class="attr_li"><h2>해수욕장/항구</h2></li>
+                <li id="attr_park" class="attr_li"><h2>공원/시설</h2></li>
+            </ul>
+            <div>
+                <input type="search" name="search" id="search" placeholder="검색어를 입력하세요">
+            </div>
+            <div>
+                <a class="more_btn" href="/attr_write">글쓰기</a>
+            </div>
+        </div>
+        <div class="attr_cont">
+            <%rows.forEach((row)=>{%>
+            <div class="attr_content_wrap">
+                <div class="attr_content_box" onclick="javacsript:location.href='/attr_content?id=<%=row.id%>'">
+                    <div class="attr_img_wrap">
+                        <img src="<%=row.img%>" alt="" class="attr_img"></div>
+                    
+                    <div class="attr_content_txt">
+                        <p class="attr_cate"><%= row.cate %></p>
+                        <h3><%= row.title %></h3>
+                        <h5><%= row.hashtag %></h5>
+                        <p><%= row.content %></p>
+                    </div>
+                  
+                </div>
+         
+         
+            </div>
+            <%});%>
+        </div>
+    </div>
+
+</section>
+<div class="wave">
+    <div class="wave_bg wbg_bot"></div>
+</div>
+
+</main>
+<script src="js/attraction.js"></script>

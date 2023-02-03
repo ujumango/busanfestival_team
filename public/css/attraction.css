@@ -1,0 +1,131 @@
+.attraction{
+  width: 100%;
+  min-height: 100vh;
+}
+.attraction .section2{
+  background-color: #0c0c0c;
+}
+
+.attraction .attr_wrap{
+  display: flex;
+}
+.attr_list .section2 h2{
+  color: #f3f2ee;
+}
+.attr_list .section2 h3{
+  
+  color: #f3f2ee;
+  font-weight: bold;
+}
+.attr_list .section2 h5{
+  padding-top: 10px;
+  font-size: 20px;
+  color: #f3f2ee;
+}
+.attr_list .section2 p:last-child {
+  padding-top: 20px;
+  color: #f3f2ee;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  line-height: 1.6;
+  font-size: 15px;
+}
+.attr_list .attr_cate{
+  /* padding-top: 10px; */
+  padding-bottom: 10px;
+  font-size: 13px;
+  color: #f3f2ee70;
+}
+.attraction .attr_menu{
+  width: 30%;
+  border-right: 1px solid #f3f2ee;
+  position: sticky;
+  top: 20px;
+}
+.attraction .attr_menu ul li{
+  padding: 10px 0;
+}
+.attraction .attr_menu ul li h2{
+  cursor: pointer;
+}
+.attraction #attr_total h2 .color {
+  text-shadow: -1px 0 #f3f2ee, 0 1px #f3f2ee, 1px 0 #f3f2ee, 0 -1px #f3f2ee;
+  color: #0c0c0c;
+}
+.attraction #attr_nature.color h2{
+  color: #EE4B3C;
+}
+.attraction #attr_exhibi.color h2{
+  color: #F9B6B0;
+}
+
+
+.attr_list .attr_cont{
+  width: 70%;
+  height: 700px;
+  overflow:auto;
+}
+.attr_list .attr_cont::-webkit-scrollbar{
+  display: none;
+}
+
+.attraction .attr_cont .attr_content_wrap{
+  padding: 0px 50px 50px 50px;
+  box-sizing: border-box;
+}
+.attraction .attr_cont .attr_content_box{
+  display: flex;
+  cursor: pointer;
+}
+.attraction .attr_cont .attr_content_txt{
+  width: 70%;
+  padding: 0 30px;
+}
+
+.attraction .attr_cont .attr_content_box .attr_img_wrap{
+  width: 400px; height: 220px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+}
+.attraction .attr_cont .attr_img_wrap .attr_img{
+  display: block;
+  object-fit: cover;
+  width: 100%; height: 100%;
+  transform: scale(107%);
+  
+  filter: brightness(85%);
+  transition: 0.5s all;
+
+
+}
+.attraction .attr_cont .attr_content_box .attr_img.active{
+  transition: 0.5s all;
+  width: 100%; height: 100%;
+  transform: scale(100%);
+  filter: brightness(105%);
+ 
+}
+.footer.f_fixed{
+  position:fixed;
+  bottom: 0;
+}
+.attraction #search{
+  padding: 10px 20px;
+  margin-top: 40px;
+  box-sizing: border-box;
+  outline: none;
+}
+.attraction .more_btn {
+  display: block;
+  width: 30%;
+  margin: 30px 0;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #f3f2ee;
+  color: #f3f2ee;
+  text-align: center;
+}
+
