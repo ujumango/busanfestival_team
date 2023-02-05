@@ -703,6 +703,9 @@ main {
     overflow: hidden;
     /* transition: 3s; */
 }
+.sec6_tab_sub ul > li {
+    cursor: pointer;
+}
 .sec6_tab_sub ul > li > a {
     width: 100%;
     display: block;
