@@ -49,7 +49,7 @@ function writeNotice(title, writer, category,  password, content, noticeimg, cal
 // }
 function getNotice(callback) {
     connection.query(
-        "SELECT  date_format(create_time, '%y.%c.%e') as time,title, writer, category,password, content, id FROM notice ORDER BY id DESC;" +
+        "SELECT  date_format(create_time, '%y.%c.%e') as time, title, writer, category,password, content, id FROM notice ORDER BY id DESC;" +
             "SELECT  date_format(create_time, '%y.%c.%e') as time, title, writer, category,password, content, id FROM notice_event ORDER BY id DESC;",
         (err, rows) => {
             if (err) throw err;

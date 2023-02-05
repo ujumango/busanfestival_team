@@ -250,6 +250,12 @@ main {
 .main .sec3_wrap > div {
     width: calc(50% - 50px);
 }
+
+.main .sec3_wrap > .sec3_left{
+    background-image: url(../img/main_sec3.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
 .main .sec3_wrap > .sec3_right {
     display: flex;
     justify-content: space-between;
