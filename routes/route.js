@@ -9,7 +9,7 @@ const db = require("./../db.js");
 const upload = multer({
     storage: multer.diskStorage({
         destination(req, file, done) {
-            done(null, "public/uploads/");
+            done(null, "../public/uploads/");
         },
         filename(req, file, done) {
             const ext = path.extname(file.originalname); //파일의 확장자
@@ -47,11 +47,10 @@ router.post("/w_notice", (req, res) => {
     let title = param["title"];
     let writer = param["writer"];
     let category = param["category"];
-    let categorycolor = param["category_color"];
     let password = param["password"];
     let content = param["content"];
 
-    db.writeNotice(title, writer, category, categorycolor, password, content, () => {
+    db.writeNotice(title, writer, category, password, content, () => {
         res.redirect("/notice_list");
     });
 });
@@ -64,6 +63,14 @@ router.get("/notice_detail", (req, res) => {
         }); //테이블의 한 행만 보내줄거기 때문에
     });
 });
+
+router.get('/deleteNotice', (req, res)=>{
+    let id = req.query.id;
+    db.deleteNotice(id, ()=>{
+      res.redirect('/notice_list')
+    })
+  });
+  
 //notice===NEWS 섹션====================================
 
 router.get("/notice_write_event", (req, res) => {
@@ -74,12 +81,11 @@ router.post("/w_notice_event", (req, res) => {
     let title = param["title"];
     let writer = param["writer"];
     let category = param["category"];
-    let categorycolor = param["category_color"];
     let password = param["password"];
     let content = param["content"];
     let img = param["img"];
 
-    db.writeNotice_event(title, writer, category, categorycolor, password, content, img, () => {
+    db.writeNotice_event(title, writer, category, password, content, img, () => {
         res.redirect("/notice_list");
     });
 });
@@ -98,10 +104,9 @@ router.post("/m_notice", (req, res) => {
     let title = param["title"];
     let writer = param["writer"];
     let category = param["category"];
-    let categorycolor = param["category_color"];
     let password = param["password"];
     let content = param["content"];
-    db.updateNotice(id, title, writer, category, categorycolor, password, content, () => {
+    db.updateNotice(id, title, writer, category, password, content, () => {
         res.redirect("/notice_list"); //redirect 에는 / 붙인다
     });
 });
@@ -272,9 +277,6 @@ router.post("/joininfo", (req, res) => {
     });
 });
 
-router.get("/test", (req, res) => {
-    res.render("test");
-});
 
 //어트랙션 페이지
 
@@ -311,7 +313,7 @@ router.post("/w_attr", upload.single("attrimg"), (req, res) => {
 //어트랙션 수정
 router.get("/modify_attr", (req, res) => {
     let id = req.query.id;
-    db.modify_attr(id, (row) => {
+    db.getAttrbyId(id, (row) => {
         res.render("attr_modify", { row: row[0] });
     });
 });

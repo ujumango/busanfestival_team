@@ -39,7 +39,7 @@
                         <div class="notice_write_cont">
                             <div class="notice_write_cate wh_bg_line">
                                 <p class="notice_write_title">*작성자</p>
-                                <div><input type="text" name="name" id="writer" class="notice_write_input" value="<%= row.writer %>"/></div>
+                                <div><input type="text" name="writer" id="writer" class="notice_write_input" value="<%= row.writer %>"/></div>
                             </div>
 
                             <div class="notice_write_cont">
@@ -62,17 +62,17 @@
                                             <option value="골목길 축제">골목길 축제</option>
                                             <option value="부산 불꽃 축제">부산 불꽃 축제</option>
                                             <option value="국제 록 페스티벌">국제 록 페스티벌</option>
-                                            <option value="시민의 종 타종식">시민의 종 타종식C</option>
+                                            <option value="시민의 종 타종식">시민의 종 타종식</option>
                                             <option value="유채꽃 축제">유채꽃 축제</option>
                                         </select>
-                                        <select name="category_color">
+                                        <!-- <select name="category_color">
                                             <option value="">--Please choose an color--</option>
                                             <option value="#ee4b3c">RED</option>
                                             <option value="#f9b6b0">PINK</option>
                                             <option value="#1874c1">BLUE</option>
                                             <option value="#ffbc16">YELLOW</option>
                                             <option value="#1ea849">GREEN</option>
-                                        </select>
+                                        </select> -->
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +86,9 @@
                                 <div class="notice_write_cate wh_bg_line">
                                     <p class="notice_write_title">내용</p>
                                     <div class="noti_textarea">
-                                        <textarea name="content" rows="10" cols="100" value="<%= row.content %>"></textarea>
+                                        <textarea name="content" rows="10" cols="100">
+                                            <%= row.content %>
+                                        </textarea>
                                     </div>
                                 </div>
                             </div>
