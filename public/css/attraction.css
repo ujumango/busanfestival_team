@@ -60,6 +60,15 @@
 .attraction #attr_exhibi.color h2{
   color: #F9B6B0;
 }
+.attraction #attr_beach.color h2{
+  color: #1874c1;
+}
+.attraction #attr_park.color h2{
+  color: #1ea849;
+}
+.attraction #attr_total.color h2{
+  color: #ffbc16;
+}
 
 
 .attr_list .attr_cont{

@@ -82,18 +82,46 @@ attr_park.addEventListener('click', ()=>{
 })
 
 
-attr_menu = document.querySelectorAll('.attr_menu>ul>li')
+attr_li = document.querySelectorAll('.attr_li')
 
+  for(let i=0; i<attr_li.length; i++){
+    attr_li[i].addEventListener('click', (e) =>{
+      if(e.currentTarget == attr_li[0]){
+        console.log(attr_li[0])
+        attr_li[0].classList.add('color');
+        attr_li[1].classList.remove('color');
+        attr_li[2].classList.remove('color');
+        attr_li[3].classList.remove('color');
+        attr_li[4].classList.remove('color');
+      }else if(e.currentTarget == attr_li[1]){
+        attr_li[1].classList.add('color');
+        attr_li[0].classList.remove('color');
+        attr_li[2].classList.remove('color');
+        attr_li[3].classList.remove('color');
+        attr_li[4].classList.remove('color');
+      }else if(e.currentTarget == attr_li[2]){
+        attr_li[2].classList.add('color');
+        attr_li[0].classList.remove('color');
+        attr_li[1].classList.remove('color');
+        attr_li[3].classList.remove('color');
+        attr_li[4].classList.remove('color');
+      }else if(e.currentTarget == attr_li[3]){
+        attr_li[3].classList.add('color');
+        attr_li[0].classList.remove('color');
+        attr_li[1].classList.remove('color');
+        attr_li[2].classList.remove('color');
+        attr_li[4].classList.remove('color');
+      }else if(e.currentTarget == attr_li[4]){
+        attr_li[4].classList.add('color');
+        attr_li[0].classList.remove('color');
+        attr_li[1].classList.remove('color');
+        attr_li[2].classList.remove('color');
+        attr_li[3].classList.remove('color');
+      }
+     
+    })
 
-  // for(let i=0; i<attr_menu.length; i++){
-  //   attr_menu[i].addEventListener('click', (e) =>{
-  //     attr_menu.classList.replace(' color','');
-  //     // console.log(attr_menu[i])
-  //   })
-  //   attr_menu[i].classList.add('color');
-       
-
-  //   };
+    };
   
 //카테고리 설정시 색깔 변경
 
